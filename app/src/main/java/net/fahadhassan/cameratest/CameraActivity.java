@@ -8,7 +8,6 @@ import android.widget.FrameLayout;
 public class CameraActivity extends AppCompatActivity {
     private CameraPreview mPreview;
     private static final String TAG = CameraActivity.class.getSimpleName();
-    boolean previewShown;
     FrameLayout preview;
 
     @Override
@@ -20,7 +19,6 @@ public class CameraActivity extends AppCompatActivity {
         mPreview = new CameraPreview(this);
         preview = (FrameLayout) findViewById(R.id.camera_preview);
         preview.addView(mPreview);
-        previewShown = true;
     }
 
     @Override
@@ -28,21 +26,13 @@ public class CameraActivity extends AppCompatActivity {
         super.onResume();
         Log.d(TAG,"ON RESUME CALLED");
         mPreview.openCamera();
-
         mPreview.startCameraPreview();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d(TAG,"ON RESTART CALLED");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         Log.d(TAG,"ON PAUSE CALLED");
-        previewShown = false;
         mPreview.releaseCameraAndPreview();
     }
 }

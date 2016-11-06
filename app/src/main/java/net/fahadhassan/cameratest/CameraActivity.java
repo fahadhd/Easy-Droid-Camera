@@ -27,10 +27,15 @@ public class CameraActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG,"ON RESUME CALLED");
-        mPreview.attachCamera();
+        mPreview.openCamera();
 
         mPreview.startCameraPreview();
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG,"ON RESTART CALLED");
     }
 
     @Override
